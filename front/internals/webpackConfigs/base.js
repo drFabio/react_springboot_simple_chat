@@ -1,4 +1,3 @@
-require('babel-register')
 import htmlPartial from './webpackConfigs/html'
 import jsPartial from './webpackConfigs/js'
 import devServerPartial from './webpackConfigs/devServer'
@@ -10,7 +9,7 @@ const PATHS = {
 }
 const common = {
   entry: {
-    app: path.resolve(PATHS.app, '../src/index.jsx'),
+    app: path.resolve(PATHS.app, '../src/index.jsx')
   },
   output: {
     path: PATHS.build,
@@ -39,7 +38,7 @@ switch (process.env.npm_lifecycle_event) {
     )
     break
 }
-let config = merge(
+const config = merge(
   htmlPartial(htmlOptions),
   jsPartial(PATHS.app),
   envConfig,

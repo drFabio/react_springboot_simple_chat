@@ -8,7 +8,8 @@ export const js = (paths) => {
           exclude: /(node_modules|bower_components)/,
           use: [
             {
-             loader: `babel-loader?cacheDirectory=${cacheDir}`
+              loader: `babel-loader?cacheDirectory=${cacheDir}`
+            }
           ],
           include: paths
         }
