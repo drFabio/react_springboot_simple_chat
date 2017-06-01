@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 
 export class EnterButton extends Component {
   static propTypes = {
-    entering: PropTypes.bool
+    entering: PropTypes.bool,
+    onClick: PropTypes.func.isRequired
   }
   render () {
     const {entering} = this.props
     const label = (entering ? 'Entering ...' : 'Enter')
     return (
-      <button disabled={entering}>
+      <button disabled={entering} onClick={this.props.onClick}>
         {label}
       </button>
     )

@@ -39,6 +39,7 @@
     "html-webpack-template": "^6.0.1",
     "jest-cli": "^20.0.4",
     "react-test-renderer": "^15.5.4",
+    "sinon": "^2.3.2",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"

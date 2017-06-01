@@ -5,13 +5,28 @@ import {EnterButton} from './enterButton'
 
 export class EnterForm extends Component {
   static propTypes = {
-    entering: PropTypes.bool
+    entering: PropTypes.bool,
+    onEnterChat: PropTypes.func
+  }
+  state = {
+    chatName: ''
+  }
+  onEnterButton = () => {
+    this.props.onEnterChat(this.state.chatName)
+  }
+  handleChange = (ev) => {
+    const chatName = ev.target.value
+    this.setState({chatName})
   }
   render () {
     return (
       <div>
-        <NameInput entering={this.props.entering} />
-        <EnterButton entering={this.props.entering} />
+        <NameInput
+          entering={this.props.entering}
+          value={this.state.chatName}
+          onChange={this.handleChange}
+        />
+        <EnterButton entering={this.props.entering} onClick={this.onEnterButton} />
       </div>
     )
   }
