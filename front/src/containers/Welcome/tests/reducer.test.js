@@ -15,6 +15,20 @@ describe('welcome reducer', () => {
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
+  it('Remove error on ENTER_CHAT', () => {
+    const mockName = 'mockName'
+    const mockAction = {
+      type: types.ENTER_CHAT,
+      userName: mockName,
+      error: {message: 'error'}
+    }
+    const expectedResult = initialState.withMutations((state) => {
+      return state.set('userName', mockName)
+        .set('entering', true)
+    })
+    const result = reducer(initialState, mockAction)
+    expect(result).toEqual(expectedResult)
+  })
   it('Unflags entering and set error on USER_ALREADY_EXISTS', () => {
     const mockName = 'mockName'
     const reducerState = initialState.withMutations((state) => {

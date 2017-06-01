@@ -11,6 +11,7 @@ function welcomeReducer (state = initial, action) {
       return state.withMutations((state) => {
         return state.set('userName', action.userName)
           .set('entering', true)
+          .delete('error')
       })
     case types.USER_ALREADY_EXISTS:
       return state.withMutations((state) => {
