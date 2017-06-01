@@ -13,7 +13,7 @@ describe('<EnterButton />', () => {
   })
   it('Displays "Entering ..." and disables if entering prop is passed ', () => {
     const renderedComponent = shallow(<EnterButton entering />)
-    expect(renderedComponent.text()).toEqual('Entering..')
-    expect(renderedComponent.prop('disabled')).toBeDefined()
+    expect(renderedComponent.text()).toEqual('Entering ...')
+    expect(renderedComponent.prop('disabled')).toEqual(true)
   })
 })
