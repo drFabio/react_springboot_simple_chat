@@ -1,0 +1,13 @@
+---
+services:
+  front:
+    image: node:8.0.0
+    hostname: front
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./front:/etc/front
+    working_dir: /etc/front
+    # command: npm start
+    command: "sleep infinity"
+version: "3"
