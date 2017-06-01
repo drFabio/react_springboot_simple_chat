@@ -6,7 +6,7 @@ export class EnterForm extends Component {
     entering: PropTypes.bool
   }
   render () {
-    return (<input disabled={this.props.entering} />)
+    return (<div />)
   }
 }
 export default EnterForm
