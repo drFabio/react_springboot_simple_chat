@@ -1,6 +1,6 @@
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import React from 'react'
-import {EnterForm, EnterButton, NameInput} from '../enterForm'
+import {EnterForm, EnterButton, NameInput} from '../'
 
 describe('<Enterform />', () => {
   it('renders one EnterButton and one NameInput', () => {
@@ -9,7 +9,7 @@ describe('<Enterform />', () => {
     expect(renderedComponent.find(NameInput).length).toEqual(1)
   })
   it('Pass entering property down', () => {
-    const renderedComponent = shallow(<EnterForm entering />)
+    const renderedComponent = mount(<EnterForm entering />)
     expect(renderedComponent.first(EnterButton).prop('entering')).toEqual(true)
     expect(renderedComponent.first(NameInput).prop('entering')).toEqual(true)
   })
