@@ -11,10 +11,12 @@ describe('Welcome container Actions', () => {
       .toEqual(expectedResult)
   })
   it('user already exists returns USER_ALREADY_EXISTS', () => {
+    const mockError = {message: 'Foo'}
     const expectedResult = {
-      type: types.USER_ALREADY_EXISTS
+      type: types.USER_ALREADY_EXISTS,
+      error: mockError
     }
-    expect(actions.userAlreadyExists())
+    expect(actions.userAlreadyExists(mockError))
       .toEqual(expectedResult)
   })
   it('welcomeToTheChat returns WELCOME_TO_THE_CHAT', () => {

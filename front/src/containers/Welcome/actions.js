@@ -5,9 +5,10 @@ export function enterChat (userName) {
     userName
   }
 }
-export function userAlreadyExists () {
+export function userAlreadyExists (error) {
   return {
-    type: types.USER_ALREADY_EXISTS
+    type: types.USER_ALREADY_EXISTS,
+    error
   }
 }
 export function welcomeToTheChat () {
