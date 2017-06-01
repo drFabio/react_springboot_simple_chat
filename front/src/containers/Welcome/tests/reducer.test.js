@@ -1,13 +1,8 @@
-import reducer from '../reducer'
+import reducer, {initial as initialState} from '../reducer'
 import types from '../actionTypes'
 
 describe('welcome reducer', () => {
-  let initialState = null
-  beforeAll(() => {
-    initialState = reducer()
-  })
   it('Flags entering and save userName on ENTER_CHAT', () => {
-    const reducerState = reducer()
     const mockName = 'mockName'
     const mockAction = {
       type: types.ENTER_CHAT,
@@ -17,12 +12,15 @@ describe('welcome reducer', () => {
       return state.set('userName', mockName)
         .set('entering', true)
     })
-    const result = reducer(reducerState, mockAction)
+    const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
   it('Unflags entering and set error on USER_ALREADY_EXISTS', () => {
     const mockName = 'mockName'
-    const reducerState = Map({entering: true, userName: mockName})
+    const reducerState = initialState.withMutations((state) => {
+      return state.set('userName', mockName)
+        .set('entering', true)
+    })
     const mockError = {'message': 'The user already exists'}
     const mockAction = {
       type: types.USER_ALREADY_EXISTS,
@@ -38,9 +36,12 @@ describe('welcome reducer', () => {
   })
   it('Unflags entering and flags success on WELCOME_TO_THE_CHAT', () => {
     const mockName = 'mockName'
-    const reducerState = Map({entering: true, userName: mockName})
+    const reducerState = initialState.withMutations((state) => {
+      return state.set('userName', mockName)
+        .set('entering', true)
+    })
     const mockAction = {
-      type: types.USER_ALREADY_EXISTS
+      type: types.WELCOME_TO_THE_CHAT
     }
     const expectedResult = initialState.withMutations((state) => {
       return state.set('userName', mockName)
