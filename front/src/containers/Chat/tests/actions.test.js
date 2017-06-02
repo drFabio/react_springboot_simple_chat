@@ -33,7 +33,7 @@ describe('Chat container Actions', () => {
   it('sendMessage returns what message', () => {
     const mockMessage = 'mockMessage'
     const expectedResult = {
-      type: types.SOMEONE_LEFT,
+      type: types.SEND_MESSAGE,
       message: mockMessage
     }
     expect(actions.sendMessage(mockMessage))
