@@ -1,16 +1,16 @@
-require('babel-register')
 import htmlPartial from './webpackConfigs/html'
 import jsPartial from './webpackConfigs/js'
 import devServerPartial from './webpackConfigs/devServer'
 import merge from 'webpack-merge'
 import path from 'path'
+
 const PATHS = {
   app: path.join(__dirname, '../src'),
   build: path.join(__dirname, '../build')
 }
 const common = {
   entry: {
-    app: path.resolve(PATHS.app, '../src/index.jsx'),
+    app: ['babel-polyfill', path.resolve(PATHS.app, '../src/index.jsx')]
   },
   output: {
     path: PATHS.build,

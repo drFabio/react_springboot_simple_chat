@@ -6,10 +6,19 @@ import getReducer from './getReducer'
 import {Welcome} from 'containers'
 import {Template} from './template'
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
+import createSagaMiddleware from 'redux-saga'
+import {welcomeSaga} from './containers/Welcome/saga'
+
 const routeMiddleware = routerMiddleware(browserHistory)
-const createStoreWithMiddleware = applyMiddleware(routeMiddleware)(createStore)
+const sagaMiddleware = createSagaMiddleware()
+const createStoreWithMiddleware = applyMiddleware(
+  routeMiddleware,
+  sagaMiddleware
+)(createStore)
 const store = createStoreWithMiddleware(getReducer())
 const history = syncHistoryWithStore(browserHistory, store)
+
+sagaMiddleware.run(welcomeSaga)
 
 export class App extends Component {
   render () {
