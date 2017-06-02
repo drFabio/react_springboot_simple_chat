@@ -35,7 +35,7 @@ describe('welcome reducer', () => {
       return state.set('userName', mockName)
         .set('entering', true)
     })
-    const mockError = {'message': 'The user already exists'}
+    const mockError = 'The user already exists'
     const mockAction = {
       type: types.USER_ALREADY_EXISTS,
       error: mockError
@@ -48,18 +48,21 @@ describe('welcome reducer', () => {
     const result = reducer(reducerState, mockAction)
     expect(result).toEqual(expectedResult)
   })
-  it('Unflags entering and flags success on WELCOME_TO_THE_CHAT', () => {
+  it('Unflags entering, flags success and set message on WELCOME_TO_THE_CHAT', () => {
     const mockName = 'mockName'
+    const mockMessage = 'mockMessage'
     const reducerState = initialState.withMutations((state) => {
       return state.set('userName', mockName)
         .set('entering', true)
     })
     const mockAction = {
-      type: types.WELCOME_TO_THE_CHAT
+      type: types.WELCOME_TO_THE_CHAT,
+      welcomeMessage: mockMessage
     }
     const expectedResult = initialState.withMutations((state) => {
       return state.set('userName', mockName)
         .set('entering', false)
+        .set('welcomeMessage', mockMessage)
         .set('success', true)
     })
     const result = reducer(reducerState, mockAction)

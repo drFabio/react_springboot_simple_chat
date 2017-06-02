@@ -11,7 +11,7 @@ describe('Welcome container Actions', () => {
       .toEqual(expectedResult)
   })
   it('user already exists returns USER_ALREADY_EXISTS', () => {
-    const mockError = {message: 'Foo'}
+    const mockError = 'The user already exists'
     const expectedResult = {
       type: types.USER_ALREADY_EXISTS,
       error: mockError
