@@ -19,11 +19,13 @@ describe('Welcome container Actions', () => {
     expect(actions.userAlreadyExists(mockError))
       .toEqual(expectedResult)
   })
-  it('welcomeToTheChat returns WELCOME_TO_THE_CHAT', () => {
+  it('welcomeToTheChat returns WELCOME_TO_THE_CHAT with message', () => {
+    const mockMessage = 'mockMessage'
     const expectedResult = {
-      type: types.WELCOME_TO_THE_CHAT
+      type: types.WELCOME_TO_THE_CHAT,
+      welcomeMessage: mockMessage
     }
-    expect(actions.welcomeToTheChat())
+    expect(actions.welcomeToTheChat(mockMessage))
       .toEqual(expectedResult)
   })
 })
