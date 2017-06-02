@@ -10,4 +10,15 @@ services:
     working_dir: /etc/front
     # command: npm start
     command: "sleep infinity"
+  api:
+    ports:
+      - "3000:8080"
+    build:
+      context: ./
+      dockerfile: api_Dockerfile
+    volumes:
+      - ./api:/etc/api
+    working_dir: /etc/api
+    # command: npm start
+    command: "sleep infinity"
 version: "3"
