@@ -11,7 +11,9 @@ export function * handleChatEnter () {
   try {
     const response = yield call(socketConnection.connectWithName.bind(socketConnection), userName)
     if (response.entered) {
-      yield put(actions.welcomeToTheChat())
+      yield put(actions.welcomeToTheChat(response.successMessage))
+    } else {
+      yield put(actions.userAlreadyExists(response.errorMessage))
     }
   } catch (err) {
     yield put(actions.userAlreadyExists(err))

@@ -22,8 +22,7 @@ export class SocketConnector {
     console.log('connecting with name')
     return this._ensureConnection().then(() => {
       this._client.subscribe('/user/topic/registerResponse', (response) => {
-        console.log('response', response)
-        return Promise.resolve({entered: true})
+        return Promise.resolve(JSON.parse(response.body))
       })
       this._client.send('/api/register', {}, JSON.stringify({name}))
     })
