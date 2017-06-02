@@ -16,8 +16,8 @@ const html = (options) => {
         inject: false,
         devServer,
         publicPath: '/',
-        links: [
-          'https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext'
+        scripts: [
+          'https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js'
         ]
       })
     ]

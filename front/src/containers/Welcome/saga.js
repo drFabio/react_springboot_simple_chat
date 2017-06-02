@@ -9,7 +9,7 @@ export function * handleChatEnter () {
   const state = yield select(makeSelectWelcome)
   const userName = state.get('userName')
   try {
-    const response = yield call(socketConnection.connectWithName, userName)
+    const response = yield call(socketConnection.connectWithName.bind(socketConnection), userName)
     if (response.entered) {
       yield put(actions.welcomeToTheChat())
     }
