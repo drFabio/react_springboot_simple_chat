@@ -1,26 +1,22 @@
 package example.chat;
 import org.springframework.stereotype.Service;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
-import org.springframework.messaging.simp.stomp.StompCommand;
-import org.springframework.messaging.support.ChannelInterceptorAdapter;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.context.event.EventListener;
+import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-public class DisconnectionWatcher extends ChannelInterceptorAdapter {
-  private SimpMessagingTemplate webSocket;
+public class DisconnectionWatcher {
+  private SimpMessagingTemplate messagingTemplate;
 
   private UserListService userList;
-    DisconnectionWatcher(UserListService userList) {
+    DisconnectionWatcher(UserListService userList, SimpMessagingTemplate messagingTemplate) {
       this.userList = userList;
+      this.messagingTemplate = messagingTemplate;
     }
-    @Override
-    public void postSend(Message<?> message, MessageChannel channel, boolean sent) {
-         StompHeaderAccessor sha = StompHeaderAccessor.wrap(message);
-         if(sha.getCommand() != StompCommand.DISCONNECT) {
-            return;
-        }
-        String sessionId = sha.getSessionId();
-        userList.removeFromlist(sessionId);
+    @EventListener
+    private void handleSessionDisconnect(SessionDisconnectEvent event) {
+      String sessionId = event.getSessionId();
+      String userName = this.userList.getUserName(sessionId);
+      userList.removeFromlist(sessionId);
+      this.messagingTemplate.convertAndSend("/topic/userLeft", new UserLeftMessage(userName));
     }
 }
