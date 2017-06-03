@@ -14,13 +14,20 @@ function createMessageSource () {
     }
   }
   let deferredEnter = null
-  const onEnter = (message) => {
+  const onUserEnter = (message) => {
     if (deferredEnter) {
       deferredEnter.resolve(message)
       deferredEnter = null
     }
   }
-  socketConnection.subscribe(onMessage, onEnter)
+  let deferredLeft = null
+  const onUserLeft = (message) => {
+    if (deferredLeft) {
+      deferredLeft.resolve(message)
+      deferredLeft = null
+    }
+  }
+  socketConnection.subscribe(onMessage, onUserEnter, onUserLeft)
   return {
     getMessage () {
       if (!deferradMessage) {
@@ -31,7 +38,7 @@ function createMessageSource () {
       }
       return deferradMessage.promise
     },
-    getEnter () {
+    getUserEnter () {
       if (!deferredEnter) {
         deferredEnter = {}
         deferredEnter.promise = new Promise((resolve) => {
@@ -39,6 +46,15 @@ function createMessageSource () {
         })
       }
       return deferredEnter.promise
+    },
+    getUserLeft () {
+      if (!deferredLeft) {
+        deferredLeft = {}
+        deferredLeft.promise = new Promise((resolve) => {
+          deferredLeft.resolve = resolve
+        })
+      }
+      return deferredLeft.promise
     }
   }
 }
@@ -56,9 +72,16 @@ export function * listenToMessages (messageSource) {
 }
 export function * listenToEnter (messageSource) {
   while (true) {
-    const message = yield call(messageSource.getEnter)
+    const message = yield call(messageSource.getUserEnter)
     console.log('received enter', message)
     yield put(actions.someoneEntered(message.userName))
+  }
+}
+export function * listenToUserLeave (messageSource) {
+  while (true) {
+    const message = yield call(messageSource.getUserLeft)
+    console.log('received Left', message)
+    yield put(actions.someoneLeft(message.userName))
   }
 }
 export function * chatSaga () {
@@ -66,7 +89,9 @@ export function * chatSaga () {
   yield [
     takeEvery(types.SEND_MESSAGE, handleMessage),
     fork(listenToMessages, messageSource),
-    fork(listenToEnter, messageSource)
+    fork(listenToEnter, messageSource),
+    fork(listenToUserLeave, messageSource)
+
   ]
 }
 export default chatSaga
