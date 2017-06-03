@@ -19,6 +19,7 @@ injectGlobal`
     font-family: 'Montserrat', sans-serif;
     height: 100%;
     margin: 0;
+    overflow-y: hidden;
   }
   #app {
     height: 100%;
