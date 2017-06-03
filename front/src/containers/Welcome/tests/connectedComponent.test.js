@@ -9,7 +9,7 @@ describe('<Welcome /> - Connected page', () => {
     const initialState = {
       welcome: new Map({
         entering: true,
-        error: {'message': 'Foo var'}
+        error: 'Foo var'
       })
     }
     const store = mockStore(initialState)

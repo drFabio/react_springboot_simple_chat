@@ -27,7 +27,7 @@ describe('chat reducer', () => {
     const mockMessage = 'mockMessage'
     const mockAction = {
       type: types.RECEIVED_MESSAGE,
-      userName: mockName,
+      senderName: mockName,
       message: mockMessage
     }
     const expectedResult = initialState.update('messagesList', messages => messages.push(`${mockName} - : ${mockMessage}`))

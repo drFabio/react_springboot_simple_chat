@@ -35,6 +35,7 @@ export function * listenToMessages () {
   const messageSource = createMessageSource()
   while (true) {
     const message = yield call(messageSource.getMessage)
+    console.log('received message', message)
     yield put(actions.receivedMessage(message.message, message.senderName))
   }
 }

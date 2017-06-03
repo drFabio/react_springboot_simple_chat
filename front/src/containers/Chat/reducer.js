@@ -11,7 +11,7 @@ function chatReducer (state = initial, action) {
     case types.SOMEONE_LEFT:
       return state.update('messagesList', messages => messages.push(`${action.userName} left the room`))
     case types.RECEIVED_MESSAGE:
-      return state.update('messagesList', messages => messages.push(`${action.userName} - : ${action.message}`))
+      return state.update('messagesList', messages => messages.push(`${action.senderName} - : ${action.message}`))
     case types.SEND_MESSAGE:
       return state.set('outgoingMessage', action.message)
     default:

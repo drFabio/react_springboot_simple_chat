@@ -2,7 +2,9 @@ import { connect } from 'react-redux'
 import {ChatPage} from './components'
 import actions from './actions'
 function mapStateToProps (state) {
+  const myState = state.chat
   return {
+    messages: myState.get('messagesList').toJS()
   }
 }
 function mapDispatchToProps (dispatch, ownProps) {
