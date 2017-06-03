@@ -7,11 +7,11 @@ export const initial = new Map({
 function chatReducer (state = initial, action) {
   switch (action.type) {
     case types.SOMEONE_ENTERED:
-      return state.update('messagesList', messages => messages.push(`${action.userName} joined the room`))
+      return state.update('messagesList', messages => messages.push({body: `${action.userName} joined the room`, isJoin: true}))
     case types.SOMEONE_LEFT:
-      return state.update('messagesList', messages => messages.push(`${action.userName} left the room`))
+      return state.update('messagesList', messages => messages.push({body: `${action.userName} left the room`, isLeft: true}))
     case types.RECEIVED_MESSAGE:
-      return state.update('messagesList', messages => messages.push(`${action.senderName} - : ${action.message}`))
+      return state.update('messagesList', messages => messages.push({body: `${action.message}`, senderName: action.senderName}))
     case types.SEND_MESSAGE:
       return state.set('outgoingMessage', action.message)
     default:

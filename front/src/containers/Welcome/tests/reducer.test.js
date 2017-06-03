@@ -53,7 +53,7 @@ describe('welcome reducer', () => {
     const mockMessage = 'mockMessage'
     const reducerState = initialState.withMutations((state) => {
       return state.set('userName', mockName)
-        .delete('entering')
+        .set('entering', true)
     })
     const mockAction = {
       type: types.WELCOME_TO_THE_CHAT,
@@ -61,6 +61,7 @@ describe('welcome reducer', () => {
     }
     const expectedResult = initialState.withMutations((state) => {
       return state.set('userName', mockName)
+        .delete('entering')
         .set('welcomeMessage', mockMessage)
         .set('success', true)
     })

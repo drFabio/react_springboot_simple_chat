@@ -8,7 +8,7 @@ describe('chat reducer', () => {
       type: types.SOMEONE_ENTERED,
       userName: mockName
     }
-    const expectedResult = initialState.update('messagesList', messages => messages.push(`${mockName} joined the room`))
+    const expectedResult = initialState.update('messagesList', messages => messages.push({body: `${mockName} joined the room`, isJoin: true}))
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
@@ -18,7 +18,7 @@ describe('chat reducer', () => {
       type: types.SOMEONE_LEFT,
       userName: mockName
     }
-    const expectedResult = initialState.update('messagesList', messages => messages.push(`${mockName} left the room`))
+    const expectedResult = initialState.update('messagesList', messages => messages.push({body: `${mockName} left the room`, isLeft: true}))
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
@@ -30,7 +30,7 @@ describe('chat reducer', () => {
       senderName: mockName,
       message: mockMessage
     }
-    const expectedResult = initialState.update('messagesList', messages => messages.push(`${mockName} - : ${mockMessage}`))
+    const expectedResult = initialState.update('messagesList', messages => messages.push({body: `${mockMessage}`, senderName: mockName}))
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
