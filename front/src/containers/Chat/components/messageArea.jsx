@@ -9,6 +9,9 @@ export class MessageArea extends Component {
   static propTypes = {
     messages: PropTypes.array
   }
+  static defaultProps = {
+    messages: []
+  }
   render () {
     let index = 0
     return (

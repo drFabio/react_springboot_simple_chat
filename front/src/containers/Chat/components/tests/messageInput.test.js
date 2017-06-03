@@ -1,11 +1,11 @@
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import React from 'react'
 import {MessageInput} from '../messageInput'
 
 describe('<MessageInput />', () => {
   it('renders an input', () => {
-    const renderedComponent = shallow(<MessageInput />)
-    expect(renderedComponent.type()).toEqual('input')
+    const renderedComponent = mount(<MessageInput />)
+    expect(renderedComponent.find('input').length).toEqual(1)
   })
   it('rendered input displays the prop value', () => {
     const mockValue = 'mockValue'

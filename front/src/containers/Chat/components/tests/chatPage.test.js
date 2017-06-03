@@ -1,5 +1,5 @@
 
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import React from 'react'
 import {
   ChatPage,
@@ -10,9 +10,9 @@ import sinon from 'sinon'
 
 describe('<ChatPage />', () => {
   it('renders the messageForm and messageArea', () => {
-    const renderedComponent = shallow(<ChatPage />)
-    expect(renderedComponent.first(MessageArea).length).toEqual(1)
-    expect(renderedComponent.first(MessageForm).length).toEqual(1)
+    const renderedComponent = mount(<ChatPage />)
+    expect(renderedComponent.find(MessageArea).length).toEqual(1)
+    expect(renderedComponent.find(MessageForm).length).toEqual(1)
   })
   it('Passs down the messaged to MessageArea', () => {
     const mockMessages = ['foo', 'bar', 'baz']
@@ -21,7 +21,7 @@ describe('<ChatPage />', () => {
   })
   it('Passs down sendMessage to MessageForm', () => {
     const sendMessageSpy = sinon.spy()
-    const renderedComponent = shallow(<ChatPage sendMessage={sendMessageSpy} />)
+    const renderedComponent = mount(<ChatPage sendMessage={sendMessageSpy} />)
     expect(renderedComponent.find(MessageForm).prop('sendMessage')).toEqual(sendMessageSpy)
   })
 })

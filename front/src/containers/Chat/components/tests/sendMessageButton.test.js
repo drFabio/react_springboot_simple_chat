@@ -1,11 +1,11 @@
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import React from 'react'
 import {SendMessageButton} from '../sendMessageButton'
 
 describe('<SendMessageButton />', () => {
   const mockClick = () => {}
   it('renders a button', () => {
-    const renderedComponent = shallow(<SendMessageButton onClick={mockClick} />)
-    expect(renderedComponent.type()).toEqual('button')
+    const renderedComponent = mount(<SendMessageButton onClick={mockClick} />)
+    expect(renderedComponent.find('button').length).toEqual(1)
   })
 })

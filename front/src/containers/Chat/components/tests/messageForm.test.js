@@ -5,7 +5,7 @@ import sinon from 'sinon'
 
 describe('<MessageForm />', () => {
   it('renders one SendMessageButton and one MessageInput', () => {
-    const renderedComponent = shallow(<MessageForm />)
+    const renderedComponent = mount(<MessageForm />)
     expect(renderedComponent.find(SendMessageButton).length).toEqual(1)
     expect(renderedComponent.find(MessageInput).length).toEqual(1)
   })
