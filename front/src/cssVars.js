@@ -7,5 +7,7 @@ export default {
   buttonBgColorHover: '#4DD0E1',
   buttonBgColorPressed: '#006064',
   buttonBgColorDisabled: '#9E9E9E',
-  buttonColorHover: '#FAFAFA'
+  buttonColorHover: '#FAFAFA',
+  shadowColor: '#424242',
+  titleColor: '#40C4FF'
 }

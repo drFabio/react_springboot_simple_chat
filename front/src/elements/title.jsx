@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-
+import cssVars from 'cssVars'
 const TitleContainer = styled.h1`
-  text-align: center
+  text-align: center;
+  color: ${cssVars['titleColor']};
 `
 export class Title extends Component {
   render () {
