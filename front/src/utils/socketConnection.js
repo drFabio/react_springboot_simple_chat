@@ -14,8 +14,14 @@ export class SocketConnector {
       this._client.connect({}, (frame) => {
         this._connected = true
         resolve()
+      },
+      () => {
+        this._connected = false
       })
     })
+  }
+  isConnected () {
+    return this._connected
   }
   subscribe (messageCallback) {
     this._messageCallback = messageCallback

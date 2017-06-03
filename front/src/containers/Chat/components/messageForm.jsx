@@ -9,12 +9,19 @@ const Container = styled.div`
   border-spacing: 0;
   position: relative;
 `
-const StyledInput = styled(MessageInput)`
+const InputContainer = styled.div`
   display: table-cell;
   width: 100%;
+  white-space:nowrap;
+`
+const ButtonContainer = styled.div`
+  display: table-cell;
+  white-space:nowrap;
+`
+const StyledRow = styled.div`
+  display: table-row;
 `
 const StyledButton = styled(SendMessageButton)`
-  display: table-cell;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   height: 100%;
@@ -35,12 +42,18 @@ export class MessageForm extends Component {
   render () {
     return (
       <Container className={this.props.className}>
-        <StyledInput
-          entering={this.props.entering}
-          value={this.state.message}
-          onChange={this.handleChange}
-        />
-        <StyledButton entering={this.props.entering} onClick={this.onSendMessage} />
+        <StyledRow>
+          <InputContainer>
+            <MessageInput
+              entering={this.props.entering}
+              value={this.state.message}
+              onChange={this.handleChange}
+            />
+          </InputContainer>
+          <ButtonContainer>
+            <StyledButton entering={this.props.entering} onClick={this.onSendMessage} />
+          </ButtonContainer>
+        </StyledRow>
       </Container>
     )
   }

@@ -9,6 +9,7 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
 import {welcomeSaga} from './containers/Welcome/saga'
 import {chatSaga} from './containers/Chat/saga'
+import socketConnection from 'utils/socketConnection'
 import {injectGlobal} from 'styled-components'
 injectGlobal`
   html {
@@ -38,6 +39,13 @@ const history = syncHistoryWithStore(browserHistory, store)
 sagaMiddleware.run(welcomeSaga)
 sagaMiddleware.run(chatSaga)
 
+const requireConnection = (nextState, replace, callback) => {
+  if (socketConnection.isConnected()) {
+    callback()
+  }
+  replace({pathname: '/'})
+  callback()
+}
 export class App extends Component {
   render () {
     return (
@@ -45,7 +53,7 @@ export class App extends Component {
         <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
           <Route path='/' component={Template} >
             <IndexRoute component={Welcome} />
-            <Route path='/chat' component={Chat} />
+            <Route onEnter={requireConnection} path='/chat' component={Chat} />
           </Route>
         </Router>
       </Provider>
