@@ -11,21 +11,32 @@ export class SocketConnector {
     return new Promise((resolve, reject) => {
       const socket = new SockJS(SOCKET_URL)
       this._client = Stomp.over(socket)
-      console.log('tryingb to connect to client')
       this._client.connect({}, (frame) => {
         this._connected = true
         resolve()
       })
     })
   }
+  subscribe (messageCallback) {
+    this._messageCallback = messageCallback
+  }
   connectWithName (name) {
-    console.log('connecting with name')
     return this._ensureConnection().then(() => {
-      this._client.subscribe('/user/topic/registerResponse', (response) => {
-        return Promise.resolve(JSON.parse(response.body))
+      return new Promise((resolve) => {
+        this._client.subscribe('/user/topic/registerResponse', (response) => {
+          return resolve(JSON.parse(response.body))
+        })
+        this._client.subscribe('/topic/messages', (response) => {
+          if (this._messageCallback) {
+            this._messageCallback(JSON.parse(response.body))
+          }
+        })
+        this._client.send('/api/register', {}, JSON.stringify({name}))
       })
-      this._client.send('/api/register', {}, JSON.stringify({name}))
     })
+  }
+  sendMessage (message) {
+    this._client.send('/api/chat', {}, JSON.stringify({message}))
   }
 }
 export const socketConnection = new SocketConnector()

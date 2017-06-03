@@ -4,7 +4,6 @@ import {WelcomePage} from './components'
 
 function mapStateToProps (state) {
   const myState = state.welcome
-  console.log(state.welcome.toJS())
   return {
     entering: myState.get('entering'),
     error: myState.get('error')
