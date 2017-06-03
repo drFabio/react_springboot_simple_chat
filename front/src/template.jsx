@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-
+import {Page} from 'elements'
 export class Template extends Component {
   render () {
     return (
-      <div>
+      <Page>
         {this.props.children}
-      </div>
+      </Page>
     )
   }
 }

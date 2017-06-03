@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-
+import {Button} from 'elements'
 export class EnterButton extends Component {
   static propTypes = {
     entering: PropTypes.bool,
@@ -10,9 +10,9 @@ export class EnterButton extends Component {
     const {entering} = this.props
     const label = (entering ? 'Entering ...' : 'Enter')
     return (
-      <button disabled={entering} onClick={this.props.onClick}>
+      <Button disabled={entering} onClick={this.props.onClick}>
         {label}
-      </button>
+      </Button>
     )
   }
 }

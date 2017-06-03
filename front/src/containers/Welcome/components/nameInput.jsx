@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-
+import {Input} from 'elements'
 export class NameInput extends Component {
   static propTypes = {
     entering: PropTypes.bool
   }
   render () {
     return (
-      <input
+      <Input
         disabled={this.props.entering}
         value={this.props.value}
         onChange={this.props.onChange}
