@@ -17,7 +17,7 @@ public class RegisterController {
       String sessionId = accessor.getSessionId();
       if (userList.addToList(sessionId, payload)) {
         webSocket.convertAndSend("/topic/userEnter", new UserEnterMessage(payload.getName()));
-        return new RegisterResponse(true, payload);
+        return new RegisterResponse(true, payload, userList.getUserList());
       }
       return new RegisterResponse(false, payload);
   }

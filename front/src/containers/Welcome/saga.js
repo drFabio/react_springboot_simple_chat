@@ -1,8 +1,8 @@
-import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects'
+import { call, put, select, takeLatest } from 'redux-saga/effects'
 import * as types from './actionTypes'
-import { LOCATION_CHANGE, push } from 'react-router-redux'
 import * as actions from './actions'
 import {socketConnection} from 'utils/socketConnection'
+import { push } from 'react-router-redux'
 
 const makeSelectWelcome = (state) => state.welcome
 export function * handleChatEnter () {
@@ -20,10 +20,7 @@ export function * handleChatEnter () {
     console.error('Something went wrong', err)
   }
 }
-
 export function * welcomeSaga () {
-  const watcher = yield takeLatest(types.ENTER_CHAT, handleChatEnter)
-  yield take(LOCATION_CHANGE)
-  yield cancel(watcher)
+  yield takeLatest(types.ENTER_CHAT, handleChatEnter)
 }
 export default welcomeSaga

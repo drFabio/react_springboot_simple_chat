@@ -22,6 +22,7 @@ function welcomeReducer (state = initial, action) {
       return state.withMutations((state) => {
         return state.set('entering', false)
           .set('success', true)
+          .delete('entering')
           .set('welcomeMessage', action.welcomeMessage)
       })
     default:

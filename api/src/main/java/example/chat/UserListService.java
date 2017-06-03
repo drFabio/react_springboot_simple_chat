@@ -1,6 +1,7 @@
 package example.chat;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +23,8 @@ public class UserListService {
   }
   public String getUserName (String sessionId) {
     return sessionIdNameMap.get(sessionId);
+  }
+  public ArrayList<String> getUserList() {
+    return new ArrayList<String>(sessionIdNameMap.values());
   }
 }

@@ -37,6 +37,12 @@ export class SocketConnector {
             this._messageCallback(JSON.parse(response.body))
           }
         })
+        this._client.subscribe('/topic/userEnter', (response) => {
+          console.log('A user entered', response)
+        })
+        this._client.subscribe('/topic/userLeft', (response) => {
+          console.log('A user left', response)
+        })
         this._client.send('/api/register', {}, JSON.stringify({name}))
       })
     })
