@@ -6,23 +6,39 @@ import {socketConnection} from 'utils/socketConnection'
 const makeSelectChat = (state) => state.chat
 
 function createMessageSource () {
-  let deferred = null
+  let deferradMessage = null
   const onMessage = (message) => {
-    if (deferred) {
-      deferred.resolve(message)
-      deferred = null
+    if (deferradMessage) {
+      deferradMessage.resolve(message)
+      deferradMessage = null
     }
   }
-  socketConnection.subscribe(onMessage)
+  let deferredEnter = null
+  const onEnter = (message) => {
+    if (deferredEnter) {
+      deferredEnter.resolve(message)
+      deferredEnter = null
+    }
+  }
+  socketConnection.subscribe(onMessage, onEnter)
   return {
     getMessage () {
-      if (!deferred) {
-        deferred = {}
-        deferred.promise = new Promise((resolve) => {
-          deferred.resolve = resolve
+      if (!deferradMessage) {
+        deferradMessage = {}
+        deferradMessage.promise = new Promise((resolve) => {
+          deferradMessage.resolve = resolve
         })
       }
-      return deferred.promise
+      return deferradMessage.promise
+    },
+    getEnter () {
+      if (!deferredEnter) {
+        deferredEnter = {}
+        deferredEnter.promise = new Promise((resolve) => {
+          deferredEnter.resolve = resolve
+        })
+      }
+      return deferredEnter.promise
     }
   }
 }
@@ -31,18 +47,26 @@ export function * handleMessage () {
   const message = state.get('outgoingMessage')
   yield call(socketConnection.sendMessage.bind(socketConnection), message)
 }
-export function * listenToMessages () {
-  const messageSource = createMessageSource()
+export function * listenToMessages (messageSource) {
   while (true) {
     const message = yield call(messageSource.getMessage)
     console.log('received message', message)
     yield put(actions.receivedMessage(message.message, message.senderName))
   }
 }
+export function * listenToEnter (messageSource) {
+  while (true) {
+    const message = yield call(messageSource.getEnter)
+    console.log('received enter', message)
+    yield put(actions.someoneEntered(message.userName))
+  }
+}
 export function * chatSaga () {
+  const messageSource = createMessageSource()
   yield [
     takeEvery(types.SEND_MESSAGE, handleMessage),
-    fork(listenToMessages)
+    fork(listenToMessages, messageSource),
+    fork(listenToEnter, messageSource)
   ]
 }
 export default chatSaga

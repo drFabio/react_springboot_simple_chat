@@ -23,8 +23,9 @@ export class SocketConnector {
   isConnected () {
     return this._connected
   }
-  subscribe (messageCallback) {
+  subscribe (messageCallback, enterCallback) {
     this._messageCallback = messageCallback
+    this._enterCallback = enterCallback
   }
   connectWithName (name) {
     return this._ensureConnection().then(() => {
@@ -38,10 +39,10 @@ export class SocketConnector {
           }
         })
         this._client.subscribe('/topic/userEnter', (response) => {
-          console.log('A user entered', response)
-        })
-        this._client.subscribe('/topic/userLeft', (response) => {
-          console.log('A user left', response)
+          console.log('Receiver user enter')
+          if (this._enterCallback) {
+            this._enterCallback(JSON.parse(response.body))
+          }
         })
         this._client.send('/api/register', {}, JSON.stringify({name}))
       })
