@@ -9,7 +9,23 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
 import {welcomeSaga} from './containers/Welcome/saga'
 import {chatSaga} from './containers/Chat/saga'
-
+import {injectGlobal} from 'styled-components'
+injectGlobal`
+  html {
+    height: 100%;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    margin: 0;
+  }
+  #app {
+    height: 100%;
+  }
+  * {
+    box-sizing: border-box;
+  }
+`
 const routeMiddleware = routerMiddleware(browserHistory)
 const sagaMiddleware = createSagaMiddleware()
 const createStoreWithMiddleware = applyMiddleware(

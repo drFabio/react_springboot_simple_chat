@@ -6,7 +6,7 @@ const StyledButton = styled(Button)`
   padding-left:2em;
   padding-right:2em;
   font-size: 1.5rem;
-  margin-top: 3rem.
+  margin-top: 2rem;
 `
 export class EnterButton extends Component {
   static propTypes = {

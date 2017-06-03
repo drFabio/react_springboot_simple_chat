@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   color: ${cssVars['buttonColor']};
   font-size: 1rem;
   padding: 0.5em;
+  font-weight: bold;
   &:hover {
     color: ${cssVars['buttonColorHover']};
     cursor: pointer;

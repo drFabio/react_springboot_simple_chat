@@ -39,7 +39,7 @@ switch (process.env.npm_lifecycle_event) {
     )
     break
 }
-let config = merge(
+const config = merge(
   htmlPartial(htmlOptions),
   jsPartial(PATHS.app),
   envConfig,

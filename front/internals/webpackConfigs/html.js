@@ -16,8 +16,12 @@ const html = (options) => {
         inject: false,
         devServer,
         publicPath: '/',
+        link: [
+          'https://fonts.googleapis.com/css?family=Montserrat'
+        ],
         scripts: [
-          'https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js'
+          'https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js',
+          'https://fonts.googleapis.com/css?family=Julius+Sans+One'
         ]
       })
     ]

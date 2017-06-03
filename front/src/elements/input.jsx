@@ -6,17 +6,19 @@ const StyledInput = styled.input`
   display: block;
   width: 100%;
   border: 0;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: black;
   border-bottom: 2px solid ${cssVars.inputBorderColor};
   margin-bottom: 0.5em;
   padding-bottom: 0.5em;
+  font-family: 'Julius Sans One', sans-serif;
   &:focus {
     outline: none;
     border-bottom: 2px solid ${cssVars.inputBorderColorFocusColor};
   }
   &:disabled {
     border-bottom: 2px solid ${cssVars.inputBorderDisabledColor};
+    background-color: inherit;
   }
 `
 export class Input extends Component {
