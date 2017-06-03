@@ -18,9 +18,10 @@ export class MessageArea extends Component {
       <Container>
         {this.props.messages.map((message) => {
           const key = `message_${index++}`
+          const {body, ...other} = message
           return (
-            <Message key={key}>
-              {message}
+            <Message key={key} {...other}>
+              {body}
             </Message>
           )
         })}
