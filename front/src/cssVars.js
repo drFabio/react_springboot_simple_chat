@@ -20,6 +20,8 @@ export default {
     '#4DD0E1',
     '#C8E6C9',
     '#9CCC65',
-    '#FFCC80'
+    '#FFCC80',
+    '#B0BEC5',
+    '#FFAB91'
   ]
 }

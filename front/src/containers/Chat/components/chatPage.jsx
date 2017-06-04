@@ -4,17 +4,24 @@ import {MessageArea} from './messageArea'
 import {UserList} from './userList'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import {Title} from 'elements'
-const Container = styled.div`
+import {Title, Card} from 'elements'
+
+const Container = styled(Card)`
   height: 100%;
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding: 0.2rem;
+  text-align: left;
 `
 const FormContainer = styled.div`
   position: absolute;
   bottom: 0;
   height: 3rem;
+`
+const InnerContainer = styled.div`
+  padding: 0.5rem;
+  position relative;
 `
 const MainContainer = styled.section`
   width: 100%;
@@ -27,8 +34,7 @@ const InnerMainContainer = styled.section`
   border-spacing: 0;
   display: table;
   height: 100%;
-  position: realtive;
-  overflow: hidden;
+  position: relative;
 `
 const MessageAreaContainer = styled.section`
   display: table-cell;
@@ -51,20 +57,22 @@ export class ChatPage extends Component {
   render () {
     return (
       <Container>
-        <Title>You are on the Chat, Talk alway!</Title>
-        <MainContainer innerRef={(c) => { this.chatArea = c }}>
-          <InnerMainContainer>
-            <MessageAreaContainer>
-              <MessageArea messages={this.props.messages} />
-            </MessageAreaContainer>
-            <UserListContainer>
-              <UserList users={this.props.users} />
-            </UserListContainer>
-          </InnerMainContainer>
-        </MainContainer>
-        <FormContainer>
-          <MessageForm sendMessage={this.props.sendMessage} />
-        </FormContainer>
+        <InnerContainer>
+          <Title>You are on the Chat, Talk alway!</Title>
+          <MainContainer innerRef={(c) => { this.chatArea = c }}>
+            <InnerMainContainer>
+              <MessageAreaContainer>
+                <MessageArea messages={this.props.messages} />
+              </MessageAreaContainer>
+              <UserListContainer>
+                <UserList users={this.props.users} />
+              </UserListContainer>
+            </InnerMainContainer>
+          </MainContainer>
+          <FormContainer>
+            <MessageForm sendMessage={this.props.sendMessage} />
+          </FormContainer>
+        </InnerContainer>
       </Container>
     )
   }

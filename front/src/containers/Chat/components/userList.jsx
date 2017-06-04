@@ -15,19 +15,20 @@ const Container = styled.section`
 `
 const Item = styled.li`
   padding: 1rem;
-  border-bottom: 2px solid ${cssVars['borderColor']};
-  list-style: none;
   margin: 0;
+  margin-bottom: 0.3rem;
+  list-style: none;
   text-align: left;
-  &:last-child{
-    border-bottom: 0;
-  }
+  color: #FFF;
+  border-radius: 10px;
+  font-weight: bold;
 `
 const StyledOl = styled.ol`
   margin: 0;
   padding: 0;
 `
 const Title = styled.h4`
+  margin-top: 0;
   text-align: center;
 `
 export class UserList extends Component {
@@ -43,9 +44,9 @@ export class UserList extends Component {
         <Title>Users</Title>
         <StyledOl>
           {this.props.users.map((userName) => {
-            const color = getUserColorByName(userName)
+            const backgroundColor = getUserColorByName(userName)
             return (
-              <Item key={userName} style={{color}}>
+              <Item key={userName} style={{backgroundColor}}>
                 {userName}
               </Item>
             )
