@@ -1,5 +1,6 @@
 import { Map, List, Set } from 'immutable'
 import types from './actionTypes'
+import {LOCATION_CHANGE} from 'react-router-redux'
 
 export const initial = new Map({
   messagesList: new List(),
@@ -48,6 +49,8 @@ function chatReducer (state = initial, action) {
       return state.update('messagesList', messages => messages.push({body: `${action.message}`, senderName: action.senderName}))
     case types.SEND_MESSAGE:
       return state.set('outgoingMessage', action.message)
+    case LOCATION_CHANGE:
+      return initial
     default:
       return state
   }

@@ -21,14 +21,7 @@ export function * handleChatEnter () {
     console.error('Something went wrong', err)
   }
 }
-
-export function * clearState () {
-  yield put(actions.userNameAccepted())
-}
 export function * welcomeSaga () {
-  yield [
-    takeLatest(types.ENTER_CHAT, handleChatEnter),
-    takeLatest(LOCATION_CHANGE, clearState)
-  ]
+  yield takeLatest(types.ENTER_CHAT, handleChatEnter)
 }
 export default welcomeSaga

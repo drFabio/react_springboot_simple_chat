@@ -24,8 +24,4 @@ describe('Welcome container Actions', () => {
     expect(result.type).toEqual(types.EMPTY_USER_NAME)
     expect(result.error).toBeDefined()
   })
-  it('Returns USER_NAME_ACCEPTED when userNameAccepted', () => {
-    const result = actions.userNameAccepted()
-    expect(result.type).toEqual(types.USER_NAME_ACCEPTED)
-  })
 })

@@ -1,5 +1,6 @@
 import { Map } from 'immutable'
 import types from './actionTypes'
+import {LOCATION_CHANGE} from 'react-router-redux'
 
 export const initial = new Map({
   entering: false,
@@ -20,7 +21,7 @@ function welcomeReducer (state = initial, action) {
       })
     case types.EMPTY_USER_NAME:
       return state.set('error', action.error)
-    case types.USER_NAME_ACCEPTED:
+    case LOCATION_CHANGE:
       return initial
     default:
       return state

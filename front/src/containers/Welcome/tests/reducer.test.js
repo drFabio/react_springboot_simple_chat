@@ -1,5 +1,6 @@
 import reducer, {initial as initialState} from '../reducer'
 import types from '../actionTypes'
+import {LOCATION_CHANGE} from 'react-router-redux'
 
 describe('welcome reducer', () => {
   it('Flags entering and save userName on ENTER_CHAT', () => {
@@ -58,13 +59,13 @@ describe('welcome reducer', () => {
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
-  it('Resets the state to the initial state on USER_NAME_ACCEPTED', () => {
+  it('Resets the state to the initial state on LOCATION_CHANGE', () => {
     const reducerState = initialState.withMutations((state) => {
       return state.set('userName', 'mockName')
         .set('entering', true)
     })
     const mockAction = {
-      type: types.USER_NAME_ACCEPTED
+      type: LOCATION_CHANGE
     }
     const result = reducer(reducerState, mockAction)
     expect(result).toEqual(initialState)

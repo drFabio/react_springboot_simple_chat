@@ -1,5 +1,6 @@
 import reducer, {initial as initialState} from '../reducer'
 import types from '../actionTypes'
+import {LOCATION_CHANGE} from 'react-router-redux'
 
 describe('chat reducer', () => {
   it('Adds a a user to the user list sorted when someone enters', () => {
@@ -92,5 +93,22 @@ describe('chat reducer', () => {
     const expectedResult = initialState.set('outgoingMessage', mockMessage)
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
+  })
+  it('Resets the state on LOCATION_CHANGE', () => {
+    const testState = initialState.update(
+      'userList',
+      userList => userList.withMutations((set) => {
+        return set.add('foo')
+          .add('zap')
+          .add('abc')
+          .add('bar')
+          .sort()
+      })
+    )
+    const mockAction = {
+      type: LOCATION_CHANGE
+    }
+    const result = reducer(testState, mockAction)
+    expect(result).toEqual(initialState)
   })
 })
