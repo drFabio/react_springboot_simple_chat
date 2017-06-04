@@ -8,7 +8,7 @@ services:
     volumes:
       - ./front:/etc/front
     working_dir: /etc/front
-    command: npm run startWithInstall
+    command: "sleep infinity"
   api:
     ports:
       - "3000:3000"
@@ -18,5 +18,5 @@ services:
     volumes:
       - ./api:/etc/api
     working_dir: /etc/api
-    command: ./gradlew bootRun
+    command: "sleep infinity"
 version: "3"
