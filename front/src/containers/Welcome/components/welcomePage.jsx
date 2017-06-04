@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {EnterForm} from './enterForm'
 import PropTypes from 'prop-types'
 import {ErrorMessage} from './errorMessage'
-import {Title} from 'elements'
-import {Card} from 'elements'
+import {Title, Card} from 'elements'
 
 export class WelcomePage extends Component {
   static propTypes = {
@@ -22,8 +21,8 @@ export class WelcomePage extends Component {
     }
     return (
       <Card>
-        {errorElement}
         <Title>Welcome to the chat example</Title>
+        {errorElement}
         <EnterForm
           onEnterChat={this.props.onEnterChat}
           entering={this.props.entering}

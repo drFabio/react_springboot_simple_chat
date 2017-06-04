@@ -15,6 +15,7 @@ export default {
   borderColor: '#757575',
   systemMessagesColor: '#FFF',
   systemMessagesBgColor: '#009688',
+  errorColor: '#D50000',
   userColors: [
     '#FFCDD2',
     '#F8BBD0',
