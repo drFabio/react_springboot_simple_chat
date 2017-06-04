@@ -11,7 +11,11 @@ public class UserListService {
   public boolean addToList(String sessionId, RegisterPayload payload) {
     String name = payload.getName();
     if (sessionIdNameMap.containsValue(name)) {
-      if (sessionIdNameMap.	containsKey(sessionId) && getUserName(sessionId) != name) {
+      if (sessionIdNameMap.containsKey(sessionId)){
+        if (getUserName(sessionId) != name) {
+          return false;
+        }
+      } else {
         return false;
       }
     }
