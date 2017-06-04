@@ -58,4 +58,15 @@ describe('welcome reducer', () => {
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
+  it('Resets the state to the initial state on USER_NAME_ACCEPTED', () => {
+    const reducerState = initialState.withMutations((state) => {
+      return state.set('userName', 'mockName')
+        .set('entering', true)
+    })
+    const mockAction = {
+      type: types.USER_NAME_ACCEPTED
+    }
+    const result = reducer(reducerState, mockAction)
+    expect(result).toEqual(initialState)
+  })
 })

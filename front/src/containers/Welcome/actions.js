@@ -17,7 +17,13 @@ export function userAlreadyExists (error) {
     error
   }
 }
+export function userNameAccepted () {
+  return {
+    type: types.USER_NAME_ACCEPTED
+  }
+}
 export default {
   enterChat,
-  userAlreadyExists
+  userAlreadyExists,
+  userNameAccepted
 }
