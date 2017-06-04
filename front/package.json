@@ -6,12 +6,13 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "build": "webpack --config internals/webpack.config.babel.js",
+    "build:production": "webpack -p --config internals/webpack.config.babel.js",
     "start": "webpack-dev-server --config internals/webpack.config.babel.js",
     "lint:js": "eslint --ext .js --ext .jsx --fix src/",
     "startWithInstall": "npm start",
     "prestartWithInstall": "npm install"
   },
-  "author": "fabio oliveira costa <blackjackdevel@gmail.com>",
+  "author": "fabio oliveira costa <fabiocostadev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.24.1",

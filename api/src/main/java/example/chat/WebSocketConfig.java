@@ -20,6 +20,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     config.setApplicationDestinationPrefixes("/api");
     config.setUserDestinationPrefix("/user");
   }
+
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
     registry.addEndpoint("/chatExample").setAllowedOrigins("*").withSockJS();

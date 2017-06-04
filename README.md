@@ -4,6 +4,12 @@ A simple react chat with spring boot as a backend using STOMP to communicate trh
 
 It's build on top of docker containers for convenience.
 
+## File structure
+
+On the root there are 2 folders **api** and **front** the first is the spring boot socket api, the second a react webpack based app.
+
+The Dockerfiles on the root are used for the build and development inside docker containers.
+
 ## How to run.
 
 ### The easy way
@@ -22,7 +28,7 @@ If you want to run on your local infrastructure and you have Java and Node you c
 ```sh
 cd front
 npm install
-npm start
+npm start ## or npm test
 ```
 
 And
@@ -32,8 +38,9 @@ cd api
 ```
 
 ### The "I want a terminal but I don't want to install all your dependencies locally way".
+This way will run the images but will run then on a shared volume on front an api, this way the file dependencies will be installed on a shared folder but the dependencies programs will not.
 
-This way we start the 2 containers sleeping and exec to use the bash on them.
+For this to work we start the 2 containers and let them sleep, then we xec to use the bash on them so we can run any command as if Node, Java, Gradle and so on were installed locally.
 
 ```sh
 docker-compose -f docker-compose-dev.yml up
@@ -44,22 +51,12 @@ On a terminal to use the front:
 ```sh
 docker-compose exec front bash
 # You will be on the bash terminal of the front (node) image
-npm install
-npm start
-# Or for tests
-npm test
+npm install # needed since it was not installed before
+npm start # Or npm test
 ```
 
 On another terminal to run the api
 ```sh
 docker-compose exec api bash
 gradle bootRun
-```
-
-## How to run the tests
-
-Either on the local machine with node on on the container machine do:
-
-```sh
-npm run test
 ```

@@ -1,22 +1,20 @@
 ---
 services:
   front:
-    image: node:8.0.0
+    build:
+      context: ./
+      dockerfile: front_Dockerfile
     hostname: front
     ports:
       - "8080:8080"
-    volumes:
-      - ./front:/etc/front
     working_dir: /etc/front
-    command: npm run startWithInstall
+    command: npm run start
   api:
     ports:
       - "3000:3000"
     build:
       context: ./
       dockerfile: api_Dockerfile
-    volumes:
-      - ./api:/etc/api
     working_dir: /etc/api
     command: ./gradlew bootRun
 version: "3"

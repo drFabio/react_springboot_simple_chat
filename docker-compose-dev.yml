@@ -14,7 +14,7 @@ services:
       - "3000:3000"
     build:
       context: ./
-      dockerfile: api_Dockerfile
+      dockerfile: api_dev_Dockerfile
     volumes:
       - ./api:/etc/api
     working_dir: /etc/api
