@@ -9,9 +9,7 @@ import {Title, Card} from 'elements'
 const Container = styled(Card)`
   height: 100%;
   position: relative;
-  width: 100%;
   overflow: hidden;
-  padding: 0.2rem;
   text-align: left;
 `
 const FormContainer = styled.div`
@@ -22,11 +20,16 @@ const FormContainer = styled.div`
 const InnerContainer = styled.div`
   padding: 0.5rem;
   position relative;
+  height: 100%;
+`
+const InnerFormContainer = styled.div`
+  padding: 0 0.5rem;
+  position relative;
+  height: 100%;
 `
 const MainContainer = styled.section`
-  width: 100%;
   position: absolute;
-  top: 3rem;
+  top: 4.5rem;
   bottom: 3.5rem;
 `
 const InnerMainContainer = styled.section`
@@ -41,10 +44,12 @@ const MessageAreaContainer = styled.section`
   width: 100%;
   height: 100%;
   padding-right: 1rem;
+  white-space: nowrap;
 `
 const UserListContainer = styled.section`
   display: table-cell;
   max-width: 25%;
+  white-space: nowrap;
 `
 export class ChatPage extends Component {
   scrollToBottom = () => {
@@ -70,7 +75,9 @@ export class ChatPage extends Component {
             </InnerMainContainer>
           </MainContainer>
           <FormContainer>
-            <MessageForm sendMessage={this.props.sendMessage} />
+            <InnerFormContainer>
+              <MessageForm sendMessage={this.props.sendMessage} />
+            </InnerFormContainer>
           </FormContainer>
         </InnerContainer>
       </Container>

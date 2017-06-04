@@ -8,6 +8,7 @@ const Container = styled.div`
   position: relative;
   padding: 1rem 0.5rem;
   box-shadow: 0 2px 4px -2px ${cssVars.shadowColor};
+  background-color: ${cssVars.cardBgColor}
 `
 export class Card extends Component {
   render () {

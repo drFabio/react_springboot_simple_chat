@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import cssVars from 'cssVars'
 
 const StyledInput = styled.input`
+  background-color: inherit;
   display: block;
   width: 100%;
   border: 0;

@@ -3,6 +3,8 @@ import {EnterForm} from './enterForm'
 import PropTypes from 'prop-types'
 import {ErrorMessage} from './errorMessage'
 import {Title} from 'elements'
+import {Card} from 'elements'
+
 export class WelcomePage extends Component {
   static propTypes = {
     onEnterChat: PropTypes.func.isRequired,
@@ -19,14 +21,14 @@ export class WelcomePage extends Component {
       )
     }
     return (
-      <div>
-        <Title>Welcome to the chat example</Title>
+      <Card>
         {errorElement}
+        <Title>Welcome to the chat example</Title>
         <EnterForm
           onEnterChat={this.props.onEnterChat}
           entering={this.props.entering}
         />
-      </div>
+      </Card>
     )
   }
 }

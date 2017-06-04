@@ -1,4 +1,6 @@
 export default {
+  bodyBgColor: '#F0F0F0',
+  cardBgColor: 'white',
   inputBorderColor: '#90CAF9',
   inputBorderColorFocusColor: '#2196F3',
   inputBorderDisabledColor: '#757575',
@@ -11,6 +13,8 @@ export default {
   shadowColor: '#424242',
   titleColor: '#40C4FF',
   borderColor: '#757575',
+  systemMessagesColor: '#FFF',
+  systemMessagesBgColor: '#009688',
   userColors: [
     '#FFCDD2',
     '#F8BBD0',

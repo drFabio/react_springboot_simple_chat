@@ -41,7 +41,7 @@ function chatReducer (state = initial, action) {
           )
           .set(
             'userList',
-            new Set(action.usersList)
+            new Set(action.usersList).sort()
           )
       })
     case types.RECEIVED_MESSAGE:

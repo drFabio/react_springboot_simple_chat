@@ -22,6 +22,9 @@ const Item = styled.li`
   color: #FFF;
   border-radius: 10px;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `
 const StyledOl = styled.ol`
   margin: 0;

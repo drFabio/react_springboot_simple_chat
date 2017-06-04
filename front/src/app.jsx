@@ -11,6 +11,8 @@ import {welcomeSaga} from './containers/Welcome/saga'
 import {chatSaga} from './containers/Chat/saga'
 import socketConnection from 'utils/socketConnection'
 import {injectGlobal} from 'styled-components'
+import cssVars from 'cssVars'
+
 injectGlobal`
   html {
     height: 100%;
@@ -20,6 +22,7 @@ injectGlobal`
     height: 100%;
     margin: 0;
     overflow-y: hidden;
+    background-color: ${cssVars['bodyBgColor']}
   }
   #app {
     height: 100%;
