@@ -38,6 +38,7 @@ const MessageAreaContainer = styled.section`
 `
 const UserListContainer = styled.section`
   display: table-cell;
+  max-width: 25%;
 `
 export class ChatPage extends Component {
   scrollToBottom = () => {

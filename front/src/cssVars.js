@@ -10,5 +10,16 @@ export default {
   buttonColorHover: '#FAFAFA',
   shadowColor: '#424242',
   titleColor: '#40C4FF',
-  borderColor: '#757575'
+  borderColor: '#757575',
+  userColors: [
+    '#FFCDD2',
+    '#F8BBD0',
+    '#E1BEE7',
+    '#B39DDB',
+    '#BBDEFB',
+    '#4DD0E1',
+    '#C8E6C9',
+    '#9CCC65',
+    '#FFCC80'
+  ]
 }

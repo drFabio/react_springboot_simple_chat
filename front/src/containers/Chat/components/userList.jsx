@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import cssVars from 'cssVars'
 import PropTypes from 'prop-types'
+import getUserColorByName from 'utils/getUserColorByName'
 
 const Container = styled.section`
   width: 100%;
@@ -10,6 +11,7 @@ const Container = styled.section`
   border-left: 2px solid ${cssVars['borderColor']};
   position: relative;
   overflow-y: auto;
+  padding: 1rem;
 `
 const Item = styled.li`
   padding: 1rem;
@@ -23,6 +25,7 @@ const Item = styled.li`
 `
 const StyledOl = styled.ol`
   margin: 0;
+  padding: 0;
 `
 const Title = styled.h4`
   text-align: center;
@@ -40,8 +43,9 @@ export class UserList extends Component {
         <Title>Users</Title>
         <StyledOl>
           {this.props.users.map((userName) => {
+            const color = getUserColorByName(userName)
             return (
-              <Item key={userName}>
+              <Item key={userName} style={{color}}>
                 {userName}
               </Item>
             )
