@@ -6,12 +6,14 @@ export class NameInput extends Component {
     entering: PropTypes.bool
   }
   render () {
+    const {entering, value, onChange, ...other} = this.props
     return (
       <Input
-        disabled={this.props.entering}
-        value={this.props.value}
-        onChange={this.props.onChange}
+        disabled={entering}
+        value={value}
+        onChange={onChange}
         placeholder={'Name to use on chat'}
+        {...other}
       />
     )
   }

@@ -35,4 +35,12 @@ describe('<Enterform />', () => {
     renderedComponent.find(EnterButton).simulate('click')
     expect(onEnterChatSpy.calledWith(mockValue.trim())).toBe(true)
   })
+  it('Submits the form if enter key is pressed', () => {
+    const onEnterChatSpy = sinon.spy()
+    const renderedComponent = mount(<EnterForm onEnterChat={onEnterChatSpy} />)
+    const mockValue = '  mockValue  '
+    renderedComponent.setState({'chatName': mockValue})
+    const mockEvent = {keyCode: 13}
+    renderedComponent.first(NameInput).find('input').simulate('keyUp', mockEvent)
+  })
 })
