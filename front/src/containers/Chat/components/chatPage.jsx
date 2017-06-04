@@ -15,6 +15,7 @@ const FormContainer = styled.div`
   position: absolute;
   bottom: 0;
   height: 3rem;
+  background-color: #FFF;
 `
 const MainContainer = styled.section`
   width: 100%;

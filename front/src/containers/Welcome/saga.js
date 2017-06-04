@@ -3,6 +3,7 @@ import * as types from './actionTypes'
 import * as actions from './actions'
 import {socketConnection} from 'utils/socketConnection'
 import { push } from 'react-router-redux'
+import * as chatActions from '../Chat/actions'
 
 const makeSelectWelcome = (state) => state.welcome
 export function * handleChatEnter () {
@@ -11,7 +12,7 @@ export function * handleChatEnter () {
   try {
     const response = yield call(socketConnection.connectWithName.bind(socketConnection), userName)
     if (response.entered) {
-      yield put(actions.welcomeToTheChat(response.successMessage))
+      yield put(chatActions.enterChatRoom(response.successMessage, response.userList))
       yield put(push('/chat'))
     } else {
       yield put(actions.userAlreadyExists(response.errorMessage))

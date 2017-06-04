@@ -2,14 +2,15 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import {Chat} from '../index'
-import {Map, List} from 'immutable'
+import {Map, List, Set} from 'immutable'
 describe('<Chat /> - Connected page', () => {
   const mockStore = configureStore()
   it('Renders and pass down the appropriate properties', () => {
     const mockMessages = ['foo', 'bar', 'baz']
     const initialState = {
       chat: new Map({
-        messagesList: new List(mockMessages)
+        messagesList: new List(mockMessages),
+        userList: new Set()
       })
     }
     const store = mockStore(initialState)

@@ -18,13 +18,6 @@ function welcomeReducer (state = initial, action) {
         return state.set('entering', false)
           .set('error', action.error)
       })
-    case types.WELCOME_TO_THE_CHAT:
-      return state.withMutations((state) => {
-        return state.set('entering', false)
-          .set('success', true)
-          .delete('entering')
-          .set('welcomeMessage', action.welcomeMessage)
-      })
     default:
       return state
   }

@@ -11,14 +11,7 @@ export function userAlreadyExists (error) {
     error
   }
 }
-export function welcomeToTheChat (welcomeMessage) {
-  return {
-    type: types.WELCOME_TO_THE_CHAT,
-    welcomeMessage
-  }
-}
 export default {
   enterChat,
-  userAlreadyExists,
-  welcomeToTheChat
+  userAlreadyExists
 }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import cssVars from 'cssVars'
+import PropTypes from 'prop-types'
+
 const Container = styled.ol`
   width: 100%;
   height: 100%;
@@ -21,6 +23,12 @@ const Item = styled.li`
   }
 `
 export class UserList extends Component {
+  static propTypes = {
+    users: PropTypes.array
+  }
+  static defaultProps = {
+    users: []
+  }
   render () {
     return (
       <Container>

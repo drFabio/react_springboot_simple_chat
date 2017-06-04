@@ -25,6 +25,13 @@ export function sendMessage (message) {
     message
   }
 }
+export function enterChatRoom (welcomeMessage, usersList) {
+  return {
+    type: types.ENTER_CHAT_ROOM,
+    welcomeMessage,
+    usersList
+  }
+}
 export default {
   someoneEntered,
   someoneLeft,

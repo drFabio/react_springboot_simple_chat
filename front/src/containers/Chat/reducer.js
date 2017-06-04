@@ -32,7 +32,18 @@ function chatReducer (state = initial, action) {
             userList => userList.delete(action.userName)
           )
       })
-
+    case types.ENTER_CHAT_ROOM:
+      return state.withMutations((mutableState) => {
+        return mutableState
+          .update(
+            'messagesList',
+            messages => messages.push({body: action.welcomeMessage})
+          )
+          .set(
+            'userList',
+            new Set(action.usersList)
+          )
+      })
     case types.RECEIVED_MESSAGE:
       return state.update('messagesList', messages => messages.push({body: `${action.message}`, senderName: action.senderName}))
     case types.SEND_MESSAGE:
