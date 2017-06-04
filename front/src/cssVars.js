@@ -9,5 +9,6 @@ export default {
   buttonBgColorDisabled: '#9E9E9E',
   buttonColorHover: '#FAFAFA',
   shadowColor: '#424242',
-  titleColor: '#40C4FF'
+  titleColor: '#40C4FF',
+  borderColor: '#757575'
 }

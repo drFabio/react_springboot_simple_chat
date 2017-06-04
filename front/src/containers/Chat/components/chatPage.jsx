@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {MessageForm} from './messageForm'
 import {MessageArea} from './messageArea'
+import {UserList} from './userList'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import {Title} from 'elements'
@@ -15,12 +16,22 @@ const FormContainer = styled.div`
   bottom: 0;
   height: 3rem;
 `
-const AreaContainer = styled.div`
+const MainContainer = styled.section`
   width: 100%;
   position: absolute;
-  top: 0;
+  top: 3rem;
   bottom: 3.5rem;
   overflow-y: auto;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+`
+const MessageAreaContainer = styled.section`
+  display: table-cell;
+  width: 100%;
+`
+const UserListContainer = styled.section`
+  display: table-cell;
 `
 export class ChatPage extends Component {
   scrollToBottom = () => {
@@ -33,10 +44,15 @@ export class ChatPage extends Component {
   render () {
     return (
       <Container>
-        <AreaContainer innerRef={(c) => { this.chatArea = c }}>
-          <Title>You are on the Chat, Talk alway!</Title>
-          <MessageArea messages={this.props.messages} />
-        </AreaContainer>
+        <Title>You are on the Chat, Talk alway!</Title>
+        <MainContainer innerRef={(c) => { this.chatArea = c }}>
+          <MessageAreaContainer>
+            <MessageArea messages={this.props.messages} />
+          </MessageAreaContainer>
+          <UserListContainer>
+            <UserList users={this.props.users} />
+          </UserListContainer>
+        </MainContainer>
         <FormContainer>
           <MessageForm sendMessage={this.props.sendMessage} />
         </FormContainer>

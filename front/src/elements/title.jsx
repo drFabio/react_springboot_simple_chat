@@ -4,6 +4,8 @@ import cssVars from 'cssVars'
 const TitleContainer = styled.h1`
   text-align: center;
   color: ${cssVars['titleColor']};
+  font-size: 2rem;
+  margin: 0.3rem 0;
 `
 export class Title extends Component {
   render () {

@@ -4,7 +4,8 @@ import actions from './actions'
 function mapStateToProps (state) {
   const myState = state.chat
   return {
-    messages: myState.get('messagesList').toJS()
+    messages: myState.get('messagesList').toJS(),
+    users: myState.get('userList').toJS()
   }
 }
 function mapDispatchToProps (dispatch, ownProps) {
