@@ -94,21 +94,4 @@ describe('chat reducer', () => {
     const result = reducer(initialState, mockAction)
     expect(result).toEqual(expectedResult)
   })
-  it('Resets the state on LOCATION_CHANGE', () => {
-    const testState = initialState.update(
-      'userList',
-      userList => userList.withMutations((set) => {
-        return set.add('foo')
-          .add('zap')
-          .add('abc')
-          .add('bar')
-          .sort()
-      })
-    )
-    const mockAction = {
-      type: LOCATION_CHANGE
-    }
-    const result = reducer(testState, mockAction)
-    expect(result).toEqual(initialState)
-  })
 })
