@@ -18,6 +18,8 @@ function welcomeReducer (state = initial, action) {
         return state.set('entering', false)
           .set('error', action.error)
       })
+    case types.EMPTY_USER_NAME:
+      return state.set('error', action.error)
     default:
       return state
   }

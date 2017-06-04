@@ -19,4 +19,9 @@ describe('Welcome container Actions', () => {
     expect(actions.userAlreadyExists(mockError))
       .toEqual(expectedResult)
   })
+  it('Returns EMPTY_USER_NAME with error if userName is empty', () => {
+    const result = actions.enterChat('')
+    expect(result.type).toEqual(types.EMPTY_USER_NAME)
+    expect(result.error).toBeDefined()
+  })
 })

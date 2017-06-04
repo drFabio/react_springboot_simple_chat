@@ -48,4 +48,14 @@ describe('welcome reducer', () => {
     const result = reducer(reducerState, mockAction)
     expect(result).toEqual(expectedResult)
   })
+  it('Sets the error is EMPTY_USER_NAME', () => {
+    const mockError = 'mockError'
+    const mockAction = {
+      type: types.EMPTY_USER_NAME,
+      error: mockError
+    }
+    const expectedResult = initialState.set('error', mockError)
+    const result = reducer(initialState, mockAction)
+    expect(result).toEqual(expectedResult)
+  })
 })
