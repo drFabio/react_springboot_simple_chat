@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {MessageForm} from './messageForm'
 import {MessageArea} from './messageArea'
+import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import {Title} from 'elements'
 const Container = styled.div`
@@ -22,10 +23,17 @@ const AreaContainer = styled.div`
   overflow-y: auto;
 `
 export class ChatPage extends Component {
+  scrollToBottom = () => {
+    const node = ReactDOM.findDOMNode(this.chatArea)
+    node.scrollTop = node.scrollHeight
+  }
+  componentDidUpdate () {
+    this.scrollToBottom()
+  }
   render () {
     return (
       <Container>
-        <AreaContainer>
+        <AreaContainer innerRef={(c) => { this.chatArea = c }}>
           <Title>You are on the Chat, Talk alway!</Title>
           <MessageArea messages={this.props.messages} />
         </AreaContainer>
