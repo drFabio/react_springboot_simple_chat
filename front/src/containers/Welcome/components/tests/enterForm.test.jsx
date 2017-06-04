@@ -27,12 +27,12 @@ describe('<Enterform />', () => {
     renderedComponent.setState({'chatName': mockValue})
     expect(renderedComponent.first(NameInput).find('input').prop('value')).toEqual(mockValue)
   })
-  it('Invokes the onEnterChat with the chatName value when button is clicked', () => {
+  it('Invokes the onEnterChat with the trimmed chatName value when button is clicked', () => {
     const onEnterChatSpy = sinon.spy()
     const renderedComponent = mount(<EnterForm onEnterChat={onEnterChatSpy} />)
-    const mockValue = 'mockValue'
+    const mockValue = '  mockValue  '
     renderedComponent.setState({'chatName': mockValue})
     renderedComponent.find(EnterButton).simulate('click')
-    expect(onEnterChatSpy.calledWith(mockValue)).toBe(true)
+    expect(onEnterChatSpy.calledWith(mockValue.trim())).toBe(true)
   })
 })

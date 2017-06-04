@@ -11,7 +11,7 @@ export class EnterForm extends Component {
     chatName: ''
   }
   onEnterButton = () => {
-    this.props.onEnterChat(this.state.chatName)
+    this.props.onEnterChat(this.state.chatName.trim())
   }
   handleChange = (ev) => {
     const chatName = ev.target.value
