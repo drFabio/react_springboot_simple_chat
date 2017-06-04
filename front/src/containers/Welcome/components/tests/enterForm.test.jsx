@@ -42,5 +42,6 @@ describe('<Enterform />', () => {
     renderedComponent.setState({'chatName': mockValue})
     const mockEvent = {keyCode: 13}
     renderedComponent.first(NameInput).find('input').simulate('keyUp', mockEvent)
+    expect(onEnterChatSpy.calledWith(mockValue.trim())).toBe(true)
   })
 })

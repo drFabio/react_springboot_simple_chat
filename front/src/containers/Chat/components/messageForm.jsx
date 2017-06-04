@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {MessageInput} from './messageInput'
 import {SendMessageButton} from './sendMessageButton'
 import styled from 'styled-components'
+import {checkEnter} from 'utils/checkEnter'
+
 const Container = styled.div`
   display: table;
   width: 100%;
@@ -39,6 +41,11 @@ export class MessageForm extends Component {
     const message = ev.target.value
     this.setState({message})
   }
+  onCheckKey = (e) => {
+    if (checkEnter(e)) {
+      this.onSendMessage()
+    }
+  }
   render () {
     return (
       <Container className={this.props.className}>
@@ -48,6 +55,7 @@ export class MessageForm extends Component {
               entering={this.props.entering}
               value={this.state.message}
               onChange={this.handleChange}
+              onKeyUp={this.onCheckKey}
             />
           </InputContainer>
           <ButtonContainer>

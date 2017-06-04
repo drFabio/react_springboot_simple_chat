@@ -30,4 +30,13 @@ describe('<MessageForm />', () => {
     renderedComponent.first(SendMessageButton).find('button').simulate('click')
     expect(renderedComponent.state('message')).toEqual('')
   })
+  it('Sends the message if enterKey is pressed', () => {
+    const sendMessageSpy = sinon.spy()
+    const renderedComponent = mount(<MessageForm sendMessage={sendMessageSpy} />)
+    const mockValue = 'mockValue'
+    renderedComponent.setState({'message': mockValue})
+    const mockEvent = {keyCode: 13}
+    renderedComponent.first(MessageInput).find('input').simulate('keyUp', mockEvent)
+    expect(sendMessageSpy.calledWith(mockValue)).toBe(true)
+  })
 })

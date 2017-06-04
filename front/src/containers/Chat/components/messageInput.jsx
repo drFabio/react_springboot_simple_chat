@@ -8,10 +8,8 @@ export class MessageInput extends Component {
   render () {
     return (
       <StyledInput
-        value={this.props.value}
-        onChange={this.props.onChange}
-        className={this.props.className}
         placeholder={'Message ...'}
+        {...this.props}
       />
     )
   }
