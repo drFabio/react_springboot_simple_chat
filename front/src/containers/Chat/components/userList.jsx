@@ -3,24 +3,29 @@ import styled from 'styled-components'
 import cssVars from 'cssVars'
 import PropTypes from 'prop-types'
 
-const Container = styled.ol`
+const Container = styled.section`
   width: 100%;
   height: 100%;
   margin: 0;
   border-left: 2px solid ${cssVars['borderColor']};
+  position: relative;
+  overflow-y: auto;
 `
 const Item = styled.li`
   padding: 1rem;
-  border-top: 2px solid ${cssVars['borderColor']};
   border-bottom: 2px solid ${cssVars['borderColor']};
   list-style: none;
+  margin: 0;
   text-align: left;
-  &:first-child {
-    border-top: 0;
-  }
   &:last-child{
     border-bottom: 0;
   }
+`
+const StyledOl = styled.ol`
+  margin: 0;
+`
+const Title = styled.h4`
+  text-align: center;
 `
 export class UserList extends Component {
   static propTypes = {
@@ -32,13 +37,16 @@ export class UserList extends Component {
   render () {
     return (
       <Container>
-        {this.props.users.map((userName) => {
-          return (
-            <Item key={userName}>
-              {userName}
-            </Item>
-          )
-        })}
+        <Title>Users</Title>
+        <StyledOl>
+          {this.props.users.map((userName) => {
+            return (
+              <Item key={userName}>
+                {userName}
+              </Item>
+            )
+          })}
+        </StyledOl>
       </Container>
     )
   }

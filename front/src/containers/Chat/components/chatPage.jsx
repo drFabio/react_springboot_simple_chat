@@ -15,21 +15,26 @@ const FormContainer = styled.div`
   position: absolute;
   bottom: 0;
   height: 3rem;
-  background-color: #FFF;
 `
 const MainContainer = styled.section`
   width: 100%;
   position: absolute;
   top: 3rem;
   bottom: 3.5rem;
-  overflow-y: auto;
-  display: table;
+`
+const InnerMainContainer = styled.section`
   border-collapse: collapse;
   border-spacing: 0;
+  display: table;
+  height: 100%;
+  position: realtive;
+  overflow: hidden;
 `
 const MessageAreaContainer = styled.section`
   display: table-cell;
   width: 100%;
+  height: 100%;
+  padding-right: 1rem;
 `
 const UserListContainer = styled.section`
   display: table-cell;
@@ -47,12 +52,14 @@ export class ChatPage extends Component {
       <Container>
         <Title>You are on the Chat, Talk alway!</Title>
         <MainContainer innerRef={(c) => { this.chatArea = c }}>
-          <MessageAreaContainer>
-            <MessageArea messages={this.props.messages} />
-          </MessageAreaContainer>
-          <UserListContainer>
-            <UserList users={this.props.users} />
-          </UserListContainer>
+          <InnerMainContainer>
+            <MessageAreaContainer>
+              <MessageArea messages={this.props.messages} />
+            </MessageAreaContainer>
+            <UserListContainer>
+              <UserList users={this.props.users} />
+            </UserListContainer>
+          </InnerMainContainer>
         </MainContainer>
         <FormContainer>
           <MessageForm sendMessage={this.props.sendMessage} />

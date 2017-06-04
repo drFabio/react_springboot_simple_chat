@@ -4,6 +4,8 @@ import {Message} from './message'
 import styled from 'styled-components'
 const Container = styled.div`
   font-family: 'Julius Sans One', sans-serif;
+  height: 100%;
+  overflow-y: auto;
 `
 export class MessageArea extends Component {
   static propTypes = {
