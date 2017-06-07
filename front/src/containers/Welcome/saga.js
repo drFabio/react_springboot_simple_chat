@@ -1,8 +1,8 @@
-import { call, put, select, takeLatest, take } from 'redux-saga/effects'
+import { call, put, select, takeLatest } from 'redux-saga/effects'
 import * as types from './actionTypes'
 import * as actions from './actions'
 import {socketConnection} from 'utils/socketConnection'
-import { push, LOCATION_CHANGE } from 'react-router-redux'
+import { push } from 'react-router-redux'
 import * as chatActions from '../Chat/actions'
 
 const makeSelectWelcome = (state) => state.welcome

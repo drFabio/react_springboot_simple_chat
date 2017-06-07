@@ -34,17 +34,18 @@ function chatReducer (state = initial, action) {
           )
       })
     case types.ENTER_CHAT_ROOM:
-      return state.withMutations((mutableState) => {
+      const newState = state.withMutations((mutableState) => {
         return mutableState
           .update(
             'messagesList',
-            messages => new List({body: action.welcomeMessage})
+            messages => new List([{body: action.welcomeMessage}])
           )
-          .set(
+          .update(
             'userList',
-            new Set(action.usersList).sort()
+            users => new Set(action.usersList).sort()
           )
       })
+      return newState
     case types.RECEIVED_MESSAGE:
       return state.update('messagesList', messages => messages.push({body: `${action.message}`, senderName: action.senderName}))
     case types.SEND_MESSAGE:
