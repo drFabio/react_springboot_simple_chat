@@ -57,6 +57,7 @@ const MessageAreaContainer = styled.section`
   height: 0;
   padding-right: 1rem;
   white-space: nowrap;
+  vertical-align: top;
 `
 const UserListContainer = styled.section`
   display: table-cell;

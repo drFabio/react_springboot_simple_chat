@@ -6,6 +6,8 @@ const Container = styled.div`
   font-family: 'Julius Sans One', sans-serif;
   height: 100%;
   overflow-y: auto;
+  padding-bottom: 2rem;
+
 `
 export class MessageArea extends Component {
   static propTypes = {
